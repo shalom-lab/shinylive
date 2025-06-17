@@ -1,0 +1,59 @@
+name: Deploy Shiny Apps
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'docs/**'  # 忽略docs目录的更改
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.2'
+      - name: Install packages
+        run: |
+          R -e "install.packages(c('shiny', 'shinylive', 'jsonlite', 'glue'))"
+      - name: Generate index page
+        run: Rscript scripts/generate_index.R
+      - name: Convert apps
+        run: |
+          mkdir -p docs
+          for dir in */; do
+            if [ -f "${dir}app.R" ]; then
+              app_name=$(basename "$dir")
+              R -e "shinylive::export('${dir}app.R', 'docs/${app_name}')"
+            fi
+          done
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+      - name: Commit docs directory
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/
+          git commit -m "Update docs directory [skip ci]" || echo "No changes to commit"
+          git push
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
