@@ -2,7 +2,7 @@ name: Deploy Shiny Apps
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     paths-ignore:
       - 'docs/**'  # 忽略docs目录的更改
   workflow_dispatch:
