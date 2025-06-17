@@ -16,19 +16,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: "Check out repository"
+        uses: actions/checkout@v3
+
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: '4.2'
+
       - name: "Setup R dependency for Shinylive App export"
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
          packages: 
             cran::shinylive@0.3.0 
-            cran::ggplot2
-            cran::jsonlite
-            cran::latex2exp
+            local::.
             
       - name: Generate index page
         run: Rscript scripts/generate_index.R
