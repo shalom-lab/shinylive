@@ -1,0 +1,11 @@
+Package: shinyliveconvertdemo
+Title: Demo converting an R Shiny application to Shinylive
+Version: 0.0.1
+Description: List the package dependencies here for the GitHub action to automatically
+  include the packages on the build. This is required for r-shinylive version >= 0.3.0.
+Imports: 
+    shiny,
+    ggplot2,
+    jsonlite,
+    latex2exp
+Encoding: UTF-8
