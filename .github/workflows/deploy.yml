@@ -26,6 +26,10 @@ jobs:
         with:
          packages: 
             cran::shinylive@0.3.0 
+            cran::ggplot2
+            cran::jsonlite
+            cran::latex2exp
+            
       - name: Generate index page
         run: Rscript scripts/generate_index.R
       - name: Convert apps
