@@ -7,7 +7,7 @@ Imports:
     shiny,
     ggplot2,
     jsonlite,
-    latex2exp
-    munsell
+    latex2exp,
+    munsell,
     bslib
 Encoding: UTF-8
