@@ -8,4 +8,6 @@ Imports:
     ggplot2,
     jsonlite,
     latex2exp
+    munsell
+    bslib
 Encoding: UTF-8
