@@ -9,6 +9,11 @@
             "name": "演示应用",
             "dir": "demo",
             "description": "一个简单的演示应用。"
+        },
+        {
+            "name": "CSV文件查看器",
+            "dir": "shiny",
+            "description": "一个用于查看CSV文件的简单Shiny应用。"
         }
     ]
 }
