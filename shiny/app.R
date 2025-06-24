@@ -1,20 +1,12 @@
-# write a shiny app that takes a csv file as input and displays a table of the data
-
 library(shiny)
 
 ui <- fluidPage(
-  titlePanel("CSV File Viewer"),
-  sidebarLayout(
-    sidebarPanel(
-      fileInput("file1", "Choose CSV File",
-                accept = c(
-                  "text/csv",
-                  "text/comma-separated-values,text/plain",
-                  ".csv")),
-    mainPanel(
-      tableOutput("contents")
-    )
-  )
+  fileInput("file1", "Choose CSV File",
+            accept = c(
+              "text/csv",
+              "text/comma-separated-values,text/plain",
+              ".csv")),
+  tableOutput("contents")
 )
 
 server <- function(input, output) {
