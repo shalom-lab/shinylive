@@ -1,6 +1,7 @@
 library(shiny)
 
 ui <- fluidPage(
+  tags$head(
   fileInput("file1", "Choose CSV File",
             accept = c(
               "text/csv",
