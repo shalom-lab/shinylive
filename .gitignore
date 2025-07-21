@@ -4,3 +4,11 @@
 .Rprofile
 .Renviron
 .Rhistory
+
+# 忽略所有 docs 下的内容
+docs/*
+
+# 但保留以下两个文件
+!docs/index.html
+!docs/service-worker.js
+
